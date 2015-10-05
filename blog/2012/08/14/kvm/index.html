@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>KVMでインストールするときqcow2形式のディスクイメージが正しくサイズが認識されない - ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="qcow2形式のディスクイメージを指定してvirt-installをすると、
+容量が仮想的なサイズじゃなくて、ディスクイメージを作ったサイズになってしまって容量が足りなくて
+インストールできないということになって調べていたら、ディスクを指定する時にformat= &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/2012/08/14/kvm/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">KVMでインストールするときqcow2形式のディスクイメージが正しくサイズが認識されない</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-14T07:08:00+09:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>qcow2形式のディスクイメージを指定してvirt-installをすると、
+容量が仮想的なサイズじゃなくて、ディスクイメージを作ったサイズになってしまって容量が足りなくて
+インストールできないということになって調べていたら、ディスクを指定する時にformat=qcow2という指定が必要ということが分かった。</p>
+
+<h2>qcow2形式のディスクイメージを作成</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>qemu-img create -f qcow2 debian20G.qcow2 20G</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>インストールスクリプト</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#!/bin/sh
+</span><span class='line'>virt-install --name=debian \
+</span><span class='line'>             -connect=qemu:///system \
+</span><span class='line'>             --ram=1024 --vcpus=1 \
+</span><span class='line'>             --os-type=linux \
+</span><span class='line'>             --hvm \
+</span><span class='line'>             --virt-type=kvm \
+</span><span class='line'>             --disk=/home/danny/debian20G.qcow2,format=qcow2 \
+</span><span class='line'>             --cdrom=debian-6.0.5-amd64-i386-netinst.iso \
+</span><span class='line'>             --vnc \
+</span><span class='line'>             --vncport=5900 \
+</span><span class='line'>             --vnclisten=0.0.0.0 \
+</span><span class='line'>             --network=bridge:br0</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">danny</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-14T07:08:00+09:00" pubdate data-updated="true">Aug 14<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  <a href="http://b.hatena.ne.jp/entry/http://f96q.github.com/blog/2012/08/14/kvm/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加">
+  <img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://f96q.github.com/blog/2012/08/14/kvm/" data-via="" data-counturl="http://f96q.github.com/blog/2012/08/14/kvm/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/13/post/" title="Previous Post: コミックマーケット82に行って来ました">&laquo; コミックマーケット82に行って来ました</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/08/15/kvm/" title="Next Post: KVMでよく使うコマンドなど">KVMでよく使うコマンドなど &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

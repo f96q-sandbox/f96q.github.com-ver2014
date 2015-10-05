@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[ガイアが俺にもっとコード書けと囁いている]]></title>
+  <link href="http://f96q.github.com/atom.xml" rel="self"/>
+  <link href="http://f96q.github.com/"/>
+  <updated>2015-10-06T01:49:56+09:00</updated>
+  <id>http://f96q.github.com/</id>
+  <author>
+    <name><![CDATA[danny]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CoreOSに移行した]]></title>
+    <link href="http://f96q.github.com/blog/2014/06/12/coreos/"/>
+    <updated>2014-06-12T01:36:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/06/12/coreos</id>
+    <content type="html"><![CDATA[<p>最近はDockerを使う時に使うベースのOSをubuntuからCoreOSに移行した。</p>
+
+<h1>一般ユーザー</h1>
+
+<p>coreというユーザーがデフォルトでいる、sudoが使える。</p>
+
+<h1>dockerの実行</h1>
+
+<p>coreという名前のユーザーでsudoなしで実行できる。</p>
+
+<h1>時間の同期方法</h1>
+
+<p>nptdがインストールされてないので</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo tlsdate
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最近気になってるgem]]></title>
+    <link href="http://f96q.github.com/blog/2014/06/11/post/"/>
+    <updated>2014-06-11T00:15:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/06/11/post</id>
+    <content type="html"><![CDATA[<h1>geokit-rails</h1>
+
+<p><a href="https://github.com/geokit/geokit-rails">https://github.com/geokit/geokit-rails</a></p>
+
+<p>近隣の位置のものとか自前で距離とか計算しなくても検索できるようになる。</p>
+
+<h1>ransack</h1>
+
+<p><a href="https://github.com/activerecord-hackery/ransack">https://github.com/activerecord-hackery/ransack</a></p>
+
+<p>よくある、いろんな条件で検索したりするのを作るのに便利そう。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[dockerでポートフォワードを複数指定する方法]]></title>
+    <link href="http://f96q.github.com/blog/2014/06/04/docker-port-forward/"/>
+    <updated>2014-06-04T16:08:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/06/04/docker-port-forward</id>
+    <content type="html"><![CDATA[
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>docker run -t -i -d -p 2222:22 -p 3003:3000 ruby-mysql /usr/bin/supervisord
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[5月のプログラマーズカフェでLTしてきました]]></title>
+    <link href="http://f96q.github.com/blog/2014/05/31/pgcafe/"/>
+    <updated>2014-05-31T20:59:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/05/31/pgcafe</id>
+    <content type="html"><![CDATA[<script async class="speakerdeck-embed" data-id="5a8de820cb8f0131162202b4824706e4" data-ratio="1.33333333333333" src="http://f96q.github.com//speakerdeck.com/assets/embed.js"></script>
+
+
+<p><a href="http://atnd.org/events/50464">5月のプログラマーズカフェ</a></p>
+
+<p>DockerについてLTしてきました。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか]]></title>
+    <link href="http://f96q.github.com/blog/2014/05/16/post/"/>
+    <updated>2014-05-16T06:21:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/05/16/post</id>
+    <content type="html"><![CDATA[<p>少人数の会社だと、自分はこの分野が専門なんで、それ以外はできませんとかやってると仕事が回らなくなって、一人でなんでも一通りやらざるをえなくなるよ。</p>
+
+<p>初音ミクのカツラ被って、keynoteでプレゼンとか。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecordのFat Model対策]]></title>
+    <link href="http://f96q.github.com/blog/2014/05/03/fat-model/"/>
+    <updated>2014-05-03T03:45:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/05/03/fat-model</id>
+    <content type="html"><![CDATA[<p>一時期、DCIが流行ったり、よくあるやり方だとrubyだとmoduleに切り出すとかあって、moduleに切り出してもソースコードの可読性はあまり良くならないと思ってて、この方法が良さそうだと思う。</p>
+
+<p><a href="http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models">7 Patterns to Refactor Fat ActiveRecord Models</a></p>
+
+<p>ここの日本語の説明が分かりやすかった。</p>
+
+<p><a href="http://tkawachi.github.io/blog/2013/09/21/active-model-7-pattern">ActiveRecord のモデルを整理する7つのパターン</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Macセットアップする時の設定]]></title>
+    <link href="http://f96q.github.com/blog/2014/05/02/post/"/>
+    <updated>2014-05-02T03:34:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/05/02/post</id>
+    <content type="html"><![CDATA[<h1>KeyRemap4MacBook</h1>
+
+<p>Key Repeat</p>
+
+<p>Delay Until Repeatを150ms
+Key Repeatを15ms</p>
+
+<h1>iTerm2</h1>
+
+<p>PreferencesのKeys</p>
+
+<p>Letf option key acs asを +Esc
+Right option key acs asを +Esc</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[機械人間]]></title>
+    <link href="http://f96q.github.com/blog/2014/05/01/post/"/>
+    <updated>2014-05-01T03:10:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/05/01/post</id>
+    <content type="html"><![CDATA[<p>この仕事をしてると、プログラミングをやってる人が多いからか、普段から論理的に考える癖がついてる人が多いような気がする。</p>
+
+<p>それが時として、機械みたいな判断に見えることがある。</p>
+
+<p>論理的な判断としては正しいけど、他人は感情で動く部分もあるのでそれが正しくない場合がる。</p>
+
+<p>論理的な判断をすれば、必ず正しい結果にならないこともある。</p>
+
+<p>自戒を込めて。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[仕事]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/23/post/"/>
+    <updated>2014-04-23T07:52:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/23/post</id>
+    <content type="html"><![CDATA[<p>対価を貰ってやってる以上、他の同業者が見たら笑われないものを作っていきたい。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[最近使ってみて便利だった、ChefのCookbook]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/22/cookbook/"/>
+    <updated>2014-04-22T05:07:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/22/cookbook</id>
+    <content type="html"><![CDATA[<h1>database</h1>
+
+<p><a href="http://community.opscode.com/cookbooks/database">database</a></p>
+
+<p>特定の権限のユーザー作ったり、dbを作ったりできる。</p>
+
+<h1>logrotate</h1>
+
+<p><a href="http://community.opscode.com/cookbooks/logrotate">logrotate</a></p>
+
+<p>ログローテートの設定をできる。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Team Dashboardでグラフを出す方法]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/18/team-dashboard/"/>
+    <updated>2014-04-18T00:06:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/18/team-dashboard</id>
+    <content type="html"><![CDATA[<p>Railsでグラフにする値を返すjsonを作る。</p>
+
+<h1>コントローラー</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">GraphController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">test</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="o">[</span><span class="p">{</span>
+</span><span class='line'>      <span class="n">target</span><span class="p">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="n">datapoints</span><span class="p">:</span> <span class="o">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="o">]]</span>
+</span><span class='line'>    <span class="p">}</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">render</span> <span class="n">json</span><span class="p">:</span> <span class="n">result</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>ルーティング</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s1">&#39;test&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;graph#test&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>設定</h1>
+
+<p>Team DashboardでAdd Widgetでgraphを選択して、http_proxyにjsonを返すurlを指定する。</p>
+
+<p><img src="http://f96q.github.com/images/uploads/graph.jpg" alt="" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[機動戦士ガンダムII 哀・戦士編を観に行って来ました]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/17/gundam2/"/>
+    <updated>2014-04-17T00:40:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/17/gundam2</id>
+    <content type="html"><![CDATA[<p><img src="http://f96q.github.com/images/uploads/gundam2.jpg" title="" alt="" /></p>
+
+<p>映画館で観れる機会がもうなかなか無いだろうと思って行ってきました。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[railsのviewでのxssの話]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/16/rails-xss/"/>
+    <updated>2014-04-16T18:20:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/16/rails-xss</id>
+    <content type="html"><![CDATA[<h1>どんなケース</h1>
+
+<p>タグを条件で結合して出力するケース。</p>
+
+<h1>xssが起きるケース</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ApplicationHelper</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">+=</span> <span class="n">content_tag</span> <span class="ss">:div</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span> <span class="k">if</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">+=</span> <span class="n">word</span> <span class="k">if</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="n">html</span><span class="o">.</span><span class="n">class</span> <span class="c1"># =&gt; String</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="n">html</span><span class="o">.</span><span class="n">inspect</span> <span class="c1"># =&gt; &quot;&lt;div&gt;test&lt;/div&gt;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;</span>
+</span><span class='line'>    <span class="n">html</span><span class="o">.</span><span class="n">html_safe</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>xssが起きないケース</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ApplicationHelper</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">=</span> <span class="n">content_tag</span> <span class="ss">:div</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span> <span class="k">if</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">html</span> <span class="o">+=</span> <span class="n">word</span> <span class="k">if</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="n">html</span><span class="o">.</span><span class="n">class</span> <span class="c1"># =&gt; ActiveSupport::SafeBuffer</span>
+</span><span class='line'>    <span class="no">Rails</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="n">html</span><span class="o">.</span><span class="n">inspect</span> <span class="c1"># =&gt; &quot;&lt;div&gt;test&lt;/div&gt;&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;&quot;</span>
+</span><span class='line'>    <span class="n">html</span><span class="o">.</span><span class="n">html_safe</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>そもそもどうしたらいいのか</h1>
+
+<p>今回のものに関しては、Stringで結合しなければ直ります。</p>
+
+<p>このへんのことって、いくら気を付けてても、起こる時は起こるので、erbのviewにしてしまって、そもそも自分でhtml_safeするコードを極力書かないようにする方が、安全なんじゃないかと思いました。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;% if true %>
+</span><span class='line'>  &lt;div>test&lt;/div>
+</span><span class='line'>  &lt;%= word if true %>
+</span><span class='line'>&lt;% end %></span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[dbのダンプ方法]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/15/db-dump/"/>
+    <updated>2014-04-15T15:32:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/15/db-dump</id>
+    <content type="html"><![CDATA[<h1>mysql</h1>
+
+<h2>インポート</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mysqldump -h localhost -u root -p db_name &gt; dump.sql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>エクスポート</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mysql -h localhost -u root -p db_name &lt; dump.sql
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PostgreSQLについて]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/14/psql/"/>
+    <updated>2014-04-14T08:39:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/14/psql</id>
+    <content type="html"><![CDATA[<p>PostgreSQLを今まで使ったことがなくて、使う機会があったので覚え書き。</p>
+
+<h2>インストール</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo yum install postgresql-server postgresql-devel
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>db初期化</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo /etc/init.d/postgresql initdb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ローカルで接続できるようにする</h2>
+
+<p>/var/lib/pgsql/data/pg_hba.conf</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">local   </span>all         all                          ident
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">local   </span>all         all                          trust
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>起動</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo /etc/init.d/postgresql start
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>コマンドライン</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>psql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>コマンドラインで終了</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/q
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[世の中は情報戦]]></title>
+    <link href="http://f96q.github.com/blog/2014/04/01/post/"/>
+    <updated>2014-04-01T22:01:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/04/01/post</id>
+    <content type="html"><![CDATA[<p>最近考えたこと。</p>
+
+<p>大抵の物事は、才能が必要な領域を除いて、知ってればなんとなるけど、知らないとなんとかならない、みたいなことがあるような気がする。</p>
+
+<p>そうすると、世の中は情報戦。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JenkinsのAPIでジョブを実行する方法]]></title>
+    <link href="http://f96q.github.com/blog/2014/03/26/jenkins-api/"/>
+    <updated>2014-03-26T00:02:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/03/26/jenkins-api</id>
+    <content type="html"><![CDATA[<p>リモートからジョブを実行するのに便利だった。</p>
+
+<p>JenkinsにBasic認識が付いてて、testとい名前のジョブを実行する場合。</p>
+
+<h2>パラメータなしで実行</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -X POST --user name:password http://host/job/test/build
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>パラメータ付きで実行</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>curl -X POST --user name:password <span class="s2">&quot;http://host/job/test/buildWithParameters?param1=value1&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[gitのsubmoduleについて]]></title>
+    <link href="http://f96q.github.com/blog/2014/03/25/git-submodule/"/>
+    <updated>2014-03-25T00:40:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/03/25/git-submodule</id>
+    <content type="html"><![CDATA[<p>gitのsubmoduleを最近使い始めた。最低限これで使えてる。</p>
+
+<h2>submoduleに追加する</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git submodule add <span class="o">[</span>repository name<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>.gitmodulesとリポジトリ名のファイルができるのでメインのリポジトリにコミットしておく。</p>
+
+<h2>submoduleのリポジトリを更新</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git submodule foreach <span class="s1">&#39;git pull origin master&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>空の初期状態で取り込む</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git submodule update --init
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chefのレシピ書く用にDockerfile作った]]></title>
+    <link href="http://f96q.github.com/blog/2014/03/24/dockerfile-chef/"/>
+    <updated>2014-03-24T00:47:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/03/24/dockerfile-chef</id>
+    <content type="html"><![CDATA[
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>FROM centos
+</span><span class='line'>MAINTAINER danny
+</span><span class='line'>
+</span><span class='line'><span class="c"># ssh</span>
+</span><span class='line'>RUN yum -y install openssh-server
+</span><span class='line'>RUN sed -ri <span class="s1">&#39;s/UsePAM yes/#UsePAM yes/g&#39;</span> /etc/ssh/sshd_config
+</span><span class='line'>RUN sed -ri <span class="s1">&#39;s/#UsePAM no/UsePAM no/g&#39;</span> /etc/ssh/sshd_config
+</span><span class='line'>RUN /etc/init.d/sshd start
+</span><span class='line'>
+</span><span class='line'><span class="c"># epel</span>
+</span><span class='line'>RUN rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
+</span><span class='line'>RUN yum install -y http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</span><span class='line'>
+</span><span class='line'><span class="c"># supervisor</span>
+</span><span class='line'>RUN yum install -y supervisor
+</span><span class='line'>RUN <span class="nb">echo</span> <span class="s2">&quot;[supervisord]&quot;</span> &gt; /etc/supervisord.conf
+</span><span class='line'>RUN <span class="nb">echo</span> <span class="s2">&quot;nodaemon=true&quot;</span> &gt;&gt; /etc/supervisord.conf
+</span><span class='line'>RUN <span class="nb">echo</span> <span class="s2">&quot;[program:sshd]&quot;</span> &gt;&gt; /etc/supervisord.conf
+</span><span class='line'>RUN <span class="nb">echo</span> <span class="s2">&quot;command=/usr/sbin/sshd -D&quot;</span> &gt;&gt; /etc/supervisord.conf
+</span><span class='line'>
+</span><span class='line'><span class="c"># root</span>
+</span><span class='line'>RUN mkdir /root/.ssh
+</span><span class='line'>RUN wget -O /root/.ssh/authorized_keys https://github.com/f96q.keys
+</span><span class='line'>RUN chmod 700 /root/.ssh
+</span><span class='line'>RUN chmod 600 /root/.ssh/authorized_keys
+</span><span class='line'>
+</span><span class='line'><span class="c"># chef</span>
+</span><span class='line'>RUN rpm -ihv https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-11.10.4-1.el6.x86_64.rpm
+</span><span class='line'>
+</span><span class='line'>RUN yum install -y rsync
+</span><span class='line'>
+</span><span class='line'>CMD /usr/bin/supervisord
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[4月で東京に来てから４年になる]]></title>
+    <link href="http://f96q.github.com/blog/2014/03/23/post/"/>
+    <updated>2014-03-23T00:51:00+09:00</updated>
+    <id>http://f96q.github.com/blog/2014/03/23/post</id>
+    <content type="html"><![CDATA[<p>月日が流れるのは本当に早いもので、もう４年も東京に住んでるという事実が自分でもびっくりですね。</p>
+
+<p>残りの人生の時間を後悔しないで生きられるように、全力を尽くします。</p>
+]]></content>
+  </entry>
+  
+</feed>

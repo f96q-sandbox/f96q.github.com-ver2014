@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>WebSocketの接続が切れた時に自動で再接続 - ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="Socket.IOが使えるのであればSocket.IOを使ったほうがいいと思うんだけど。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+class WebSocketClient @timer_id: null constructor: (@ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/2012/07/29/web-socket/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">WebSocketの接続が切れた時に自動で再接続</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-29T06:04:00+09:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://socket.io/">Socket.IO</a>が使えるのであればSocket.IOを使ったほうがいいと思うんだけど。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="k">class</span> <span class="nx">WebSocketClient</span>
+</span><span class='line'>  <span class="vi">@timer_id: </span><span class="kc">null</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">constructor: </span><span class="nf">(@url) -&gt;</span>
+</span><span class='line'>    <span class="nv">socket = </span><span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="nx">@url</span><span class="p">)</span>
+</span><span class='line'>    <span class="nv">socket.onopen = </span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="nx">clearInterval</span> <span class="nx">WebSocketClient</span><span class="p">.</span><span class="nx">timer_id</span>
+</span><span class='line'>      <span class="nv">WebSocketClient.timer_id = </span><span class="kc">null</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">socket.onmessage = </span><span class="nf">(e) -&gt;</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">e</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">socket.onerror = </span><span class="nf">(e) -&gt;</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">e</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">reconnect = </span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="k">new</span> <span class="nx">WebSocketClient</span><span class="p">(</span><span class="nx">@url</span><span class="p">)</span> <span class="k">if</span> <span class="nx">WebSocketClient</span><span class="p">.</span><span class="nx">timer_id</span><span class="o">?</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">socket.onclose = </span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="nv">WebSocketClient.timer_id = </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">reconnect</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span> <span class="nx">unless</span> <span class="nx">WebSocketClient</span><span class="p">.</span><span class="nx">timer_id</span><span class="o">?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行例</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'>  <span class="k">new</span> <span class="nx">WebSocketClient</span><span class="p">(</span><span class="s">&#39;ws://localhost:3001&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">danny</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-29T06:04:00+09:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  <a href="http://b.hatena.ne.jp/entry/http://f96q.github.com/blog/2012/07/29/web-socket/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加">
+  <img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://f96q.github.com/blog/2012/07/29/web-socket/" data-via="" data-counturl="http://f96q.github.com/blog/2012/07/29/web-socket/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/07/28/post/" title="Previous Post: 個人的にどんな人に来て欲しいかについて">&laquo; 個人的にどんな人に来て欲しいかについて</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/07/30/post/" title="Next Post: 「うつ」になりやすい考え方・なりにくい考え方">「うつ」になりやすい考え方・なりにくい考え方 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

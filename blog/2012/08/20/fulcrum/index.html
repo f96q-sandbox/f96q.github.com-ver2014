@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fulcrumのインストール - ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="自分の用途に合うように若干修正した。
+https://github.com/f96q/fulcrum/tree/fix 修正した点など。 mysqlを使うように
+unicornで動かせるように
+therubyracerを追加
+action mailerの設定を少し修正 mysql関係のインストール &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/2012/08/20/fulcrum/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Fulcrumのインストール</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-20T06:22:00+09:00" pubdate data-updated="true">Aug 20<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>自分の用途に合うように若干修正した。
+<a href="https://github.com/f96q/fulcrum/tree/fix">https://github.com/f96q/fulcrum/tree/fix</a></p>
+
+<h2>修正した点など。</h2>
+
+<ul>
+<li>mysqlを使うように</li>
+<li>unicornで動かせるように</li>
+<li>therubyracerを追加</li>
+<li>action mailerの設定を少し修正</li>
+</ul>
+
+
+<h2>mysql関係のインストール</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mysql-server mysql-client libmysqlclient-dev</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fulcrumのインストール</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git@github.com:f96q/fulcrum.git
+</span><span class='line'>git checkout -b fix origin/fix
+</span><span class='line'>bundle exec rake fulcrum:setup
+</span><span class='line'>RAILS_ENV=production bundle exec rake db:create
+</span><span class='line'>RAILS_ENV=production bundle exec rake db:schema:load
+</span><span class='line'>bundle insalll --path .bundle --without test development
+</span><span class='line'>bundle exec rake assets:precompile</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>unicornで動かす</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundle</span> <span class="nb">exec</span> <span class="n">unicorn</span> <span class="o">-</span><span class="n">c</span> <span class="n">config</span><span class="o">/</span><span class="n">unicorn</span><span class="o">/</span><span class="n">production</span><span class="o">.</span><span class="n">rb</span> <span class="o">-</span><span class="n">E</span> <span class="n">production</span> <span class="o">-</span><span class="n">D</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ソケットのパス</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/tmp/fulcrum-production.sock</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>メールを使わないでユーザーを使えるようにする方法</h2>
+
+<p>script console</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">confirm!</span>
+</span><span class='line'><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_attributes!</span><span class="p">(</span><span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s1">&#39;pass&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">danny</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-20T06:22:00+09:00" pubdate data-updated="true">Aug 20<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  <a href="http://b.hatena.ne.jp/entry/http://f96q.github.com/blog/2012/08/20/fulcrum/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加">
+  <img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://f96q.github.com/blog/2012/08/20/fulcrum/" data-via="" data-counturl="http://f96q.github.com/blog/2012/08/20/fulcrum/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/19/review/" title="Previous Post: コードレビューについて">&laquo; コードレビューについて</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/08/21/gitlab/" title="Next Post: GitLabのインストール">GitLabのインストール &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

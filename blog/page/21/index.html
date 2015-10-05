@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="構成とか ホスト Debian sid
+ゲストにDebianをインストール パッケージのインストール 1
+apt-get install kvm kvm-qemu virsh virtinst libvirt0 python-libvirt ブリッジの設定 自分の環境のローカルIPが192.168 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/page/21/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/31/kvm/">KVMの環境を構築</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-31T05:29:00+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>構成とか</h2>
+
+<ul>
+<li>ホスト Debian sid</li>
+<li>ゲストにDebianをインストール</li>
+</ul>
+
+
+<h2>パッケージのインストール</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install kvm kvm-qemu virsh virtinst libvirt0 python-libvirt</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ブリッジの設定</h2>
+
+<p>自分の環境のローカルIPが192.168.11.xxxなので以下に設定</p>
+
+<figure class='code'><figcaption><span>/etc/network/interfaces </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># This file describes the network interfaces available on your system
+</span><span class='line'># and how to activate them. For more information, see interfaces(5).
+</span><span class='line'>
+</span><span class='line'># The loopback network interface
+</span><span class='line'>auto lo
+</span><span class='line'>iface lo inet loopback
+</span><span class='line'>
+</span><span class='line'>auto eth0
+</span><span class='line'>iface eth0 inet manual
+</span><span class='line'>
+</span><span class='line'>auto br0
+</span><span class='line'>iface br0 inet static
+</span><span class='line'>address 192.168.11.2
+</span><span class='line'>network 192.168.11.0
+</span><span class='line'>netmask 255.255.255.0
+</span><span class='line'>broadcast 192.168.11.255
+</span><span class='line'>gateway 192.168.11.1
+</span><span class='line'>bridge_ports eth0
+</span><span class='line'>bridge_fd 9
+</span><span class='line'>bridge_hello 2
+</span><span class='line'>bridge_maxage 12
+</span><span class='line'>bridge_stp off</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ディスクイメージを作成</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>qemu-img create -f raw hd.img 8G</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>debainのインストール用のisoイメージをダウンロードする</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget http://cdimage.debian.org/debian-cd/current/multi-arch/iso-cd/debian-6.0.5-amd64-i386-netinst.iso</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>起動</h2>
+
+<p>ディスクイメージとisoイメージのパスをそれぞれ置いたパスに合わせる</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo virt-install --name=test -connect=qemu:///system --ram=1024 --vcpus=4 --os-type=linux --hvm --virt-type=kvm --file=/home/danny/hd.img --cdrom=/home/danny/debian-6.0.5-amd64-i386-netinst.iso --vnc --vncport=5900 --vnclisten=0.0.0.0 --network=bridge:br0</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>192.168.11.2:5900にvncで接続</h2>
+
+<p>vncクライアントは<a href="http://sourceforge.net/projects/cotvnc">Chicken of the VNC</a>を使った。
+インストール画面が出るので、インストールが終わったら、もう一回vncでつないでsshでつなげるように以下を設定</p>
+
+<h2>ゲストにsshできるようにする</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install openssl-server</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ifconfigでゲストのipを調べてsshしてみる。あとはipを固定にするなりすればいいと思います。</p>
+
+<h2>参考</h2>
+
+<p><a href="http://ymotongpoo.hatenablog.com/entry/20100806/1281084634">10分で始めるKVM</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/30/post/">「うつ」になりやすい考え方・なりにくい考え方</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T04:44:00+09:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2><a href="http://getnews.jp/archives/237301">「うつ」になりやすい考え方・なりにくい考え方</a></h2>
+
+<p>どんなことでも、それが上手くいくかどうかは運的な要素が入るし、
+自分のできる範囲のことでなんとかならないこともあるんだから
+必要以上に責めることもないんじゃないのかな。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/29/web-socket/">WebSocketの接続が切れた時に自動で再接続</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-29T06:04:00+09:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://socket.io/">Socket.IO</a>が使えるのであればSocket.IOを使ったほうがいいと思うんだけど。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="k">class</span> <span class="nx">WebSocketClient</span>
+</span><span class='line'>  <span class="vi">@timer_id: </span><span class="kc">null</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">constructor: </span><span class="nf">(@url) -&gt;</span>
+</span><span class='line'>    <span class="nv">socket = </span><span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="nx">@url</span><span class="p">)</span>
+</span><span class='line'>    <span class="nv">socket.onopen = </span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="nx">clearInterval</span> <span class="nx">WebSocketClient</span><span class="p">.</span><span class="nx">timer_id</span>
+</span><span class='line'>      <span class="nv">WebSocketClient.timer_id = </span><span class="kc">null</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">socket.onmessage = </span><span class="nf">(e) -&gt;</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">e</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">socket.onerror = </span><span class="nf">(e) -&gt;</span>
+</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">e</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">reconnect = </span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="k">new</span> <span class="nx">WebSocketClient</span><span class="p">(</span><span class="nx">@url</span><span class="p">)</span> <span class="k">if</span> <span class="nx">WebSocketClient</span><span class="p">.</span><span class="nx">timer_id</span><span class="o">?</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">socket.onclose = </span><span class="o">=&gt;</span>
+</span><span class='line'>      <span class="nv">WebSocketClient.timer_id = </span><span class="nx">setInterval</span><span class="p">(</span><span class="nx">reconnect</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span> <span class="nx">unless</span> <span class="nx">WebSocketClient</span><span class="p">.</span><span class="nx">timer_id</span><span class="o">?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行例</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'>  <span class="k">new</span> <span class="nx">WebSocketClient</span><span class="p">(</span><span class="s">&#39;ws://localhost:3001&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/28/post/">個人的にどんな人に来て欲しいかについて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-28T12:34:00+09:00" pubdate data-updated="true">Jul 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>弊社でエンジニアを<a href="http://kray.jp/news/recruit20120701/">募集</a>することになったので、
+個人的にどんな人に来て欲しいのかを書いておこうかなと思います。
+<strong>会社側の意向じゃない</strong>ので、そこは真に受けないようにお願いします。</p>
+
+<h2>ほかの人が見た時にに読みやすいコードが書けるかどうか</h2>
+
+<p>チームで開発することが多いので他の人が見た時に読みやすいコードを書くということがかなり大事だと思ってます。
+万が一、明日自分が死んだら、他の人が保守しないといけなくなるわけで
+そうゆう時に笑われたくないじゃないですか。
+あと、rubyでコード書いたことがなくても他の言語で綺麗にコードが書けてるのであれば
+素質はあると思うのでそこはあんまり気にしてません。</p>
+
+<h2>今、自分の持ってる技術を捨てていけるかどうか</h2>
+
+<p>これから10年、20年先もrubyとrailsで開発していけるかというと、
+それはないんじゃないかと個人的には思っていて、
+誰もこれから先はなにがメインストリームになるかとか予想がつかないし、
+新しい技術とかが出てきた時に自分の持ってる技術をばっさり捨てて
+適応できるかが大事だと思ってます。</p>
+
+<h2>周りの人たちを大切にできるかどうか</h2>
+
+<p>自分が新しい技術が勉強できればいいとか、自分だけ良ければそれでいいとかじゃなくて、
+誰かのためになんかしてあげたりできる人に来てもらいたいです。</p>
+
+<h2>その他</h2>
+
+<p>これすごく個人的なことなんですが、
+子供の頃、喘息で今も煙草の煙が苦手なので
+けっこう会社のみんなでご飯食べに行くことが多いので、
+ご飯の時に煙草吸う人はやめてもらいたいです。</p>
+
+<h2>追記(2012-8-5)</h2>
+
+<p>この記事書いたことを社内で伝えたら、<a href="https://twitter.com/amachin">社長</a>から上に加えて、
+<strong>最後までできる人</strong>って言われてそう思ったので、せっかくなので追記しました。</p>
+
+<p>でも個人的にはここに書いてること全部できないとだめかとかそんなことはないと思うので
+応募したい人は応募してみるといいと思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/27/active-model/">ActiveModelのattributeの翻訳</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-27T05:59:00+09:00" pubdate data-updated="true">Jul 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以下のようなActiveRecordを使わないモデルを作った時に</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Test</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Conversion</span>
+</span><span class='line'>  <span class="kp">extend</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Naming</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validations</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:example</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">persisted?</span>
+</span><span class='line'>    <span class="kp">false</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>attributeを翻訳すると</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Test</span><span class="o">.</span><span class="n">human_attribute_name</span><span class="p">(</span><span class="ss">:example</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>翻訳ファイルの見に行く先が</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">I18n</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;activerecord.attributes.test.example&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ではなくて以下になる</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">I18n</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;activemodel.attributes.test.example&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/26/sorcery/">sorceryでアクティベーション前のユーザー作成をされた時に管理者にもメールを送信する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-26T06:38:00+09:00" pubdate data-updated="true">Jul 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'><figcaption><span>lib/sorcery/mail_admin.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">module</span> <span class="nn">Sorcery</span>
+</span><span class='line'>  <span class="k">module</span> <span class="nn">Model</span>
+</span><span class='line'>    <span class="k">module</span> <span class="nn">Submodules</span>
+</span><span class='line'>      <span class="k">module</span> <span class="nn">UserActivation</span>
+</span><span class='line'>        <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included_with_admin</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">included_without_admin</span> <span class="n">base</span>
+</span><span class='line'>          <span class="n">base</span><span class="o">.</span><span class="n">sorcery_config</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
+</span><span class='line'>            <span class="kp">attr_accessor</span> <span class="ss">:activation_needed_email_admin_method_name</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>          <span class="n">base</span><span class="o">.</span><span class="n">sorcery_config</span><span class="o">.</span><span class="n">instance_eval</span> <span class="k">do</span>
+</span><span class='line'>            <span class="vi">@defaults</span><span class="o">.</span><span class="n">merge!</span><span class="p">(</span><span class="ss">:@activation_needed_email_admin_method_name</span> <span class="o">=&gt;</span> <span class="ss">:activation_needed_email_admin</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">reset!</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>        <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>          <span class="n">alias_method_chain</span> <span class="ss">:included</span><span class="p">,</span> <span class="ss">:admin</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>        <span class="k">module</span> <span class="nn">InstanceMethods</span>
+</span><span class='line'>          <span class="k">def</span> <span class="nf">send_activation_needed_email_with_admin!</span>
+</span><span class='line'>            <span class="n">send_activation_needed_email_without_admin!</span>
+</span><span class='line'>            <span class="n">generic_send_email</span><span class="p">(</span><span class="ss">:activation_needed_email_admin_method_name</span><span class="p">,</span> <span class="ss">:user_activation_mailer</span><span class="p">)</span> <span class="k">unless</span> <span class="n">sorcery_config</span><span class="o">.</span><span class="n">activation_needed_email_admin_method_name</span><span class="o">.</span><span class="n">nil?</span> <span class="ow">or</span> <span class="n">sorcery_config</span><span class="o">.</span><span class="n">activation_mailer_disabled</span> <span class="o">==</span> <span class="kp">true</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>          <span class="n">alias_method_chain</span> <span class="ss">:send_activation_needed_email!</span><span class="p">,</span> <span class="ss">:admin</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>先頭に以下を追加</p>
+
+<figure class='code'><figcaption><span>config/initializers/sorcery.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="nb">require</span> <span class="s1">&#39;sorcery/mail_admin&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>UserMailerを生成</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rails generate mailer UserMailer
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>app/mailers/user_mailer.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">class</span> <span class="nc">UserMailer</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">activation_needed_email</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">mail</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="ss">:subject</span> <span class="o">=&gt;</span> <span class="s1">&#39;subject&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">activation_needed_email_admin</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">mail</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s1">&#39;admin@example.com&#39;</span><span class="p">,</span> <span class="ss">:subject</span> <span class="o">=&gt;</span> <span class="s1">&#39;subject&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>app/views/user_mailer
+に以下のファイルを追加してメールの本文を書く</p>
+
+<ul>
+<li>activation_needed_email.text.erb</li>
+<li>activation_needed_email_admin.text.erb</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/25/post/">Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-25T06:15:00+09:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近は<a href="http://octopress.org/">Octopress</a>を使ってブログを書いていて、
+Emacsで編集してコマンドでデプロイできるのがなかなか使いやすくていい。
+だいだいブログ書こうとすると３日でぐらいで面倒になって更新しなくなるんだけど、今回は面倒だと思うこともなかった。
+昔いろいろあって一年ぐらい引きこもってた時は時間に余裕があったので結構書いてたんだけど
+あの頃はよく続けられてたなと。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/24/post/">おおかみこどもの雨と雪</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-24T05:44:00+09:00" pubdate data-updated="true">Jul 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>が最近の映画で気になるんだけど、なのは観に行きたい。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/22/post/">叱る母親・泣く子供&#8230;ある日の電車内にて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-22T06:54:00+09:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2><a href="http://konozama.jp/amazon_devil/2012/07/post-267.html">叱る母親・泣く子供&#8230;ある日の電車内にて</a></h2>
+
+<p>別に泣くことがみっともないことでもないし、
+体面的な部分ばかりに気にして注意ばっかりしてると
+<a href="http://alfalfa.livedoor.biz/archives/50925755.html">学習された無力感</a>
+みたいになって感情を表に出せないような人になってしまうんじゃないのかな。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/22/net/">HTTPの確認の仕方とか</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-22T05:37:00+09:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.slideshare.net/takafumionaka/ss-5852561">とあるアプリの開発運用(トラブルシュート)</a>
+に書いてあるんだけど、net-htttp-spyとtcpflowが使いやすかった。</p>
+
+<h2>net-htttp-spy</h2>
+
+<p>bodyだけ表示する場合</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;net-http-spy&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">http_logger_options</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:body</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>全部表示する場合</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;net-http-spy&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">http_logger_options</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:verbose</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>tcpflow</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo tcpflow -c port 3000 -i eth0
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/22/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/20/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

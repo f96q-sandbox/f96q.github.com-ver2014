@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="最近帰宅すると眠い。
+">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/page/9/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/09/post/">眠い</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-09T22:08:00+09:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近帰宅すると眠い。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/08/ios-sdk-appid/">iOS SDKでapp idを取得する方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-08T06:49:00+09:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSString</span> <span class="o">*</span><span class="n">appId</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">infoDictionary</span><span class="p">]</span> <span class="nl">objectForKey:</span><span class="s">@&quot;CFBundleIdentifier&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/07/sen-testing-kit/">SenTestingKitを使えるようにする方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-07T00:29:00+09:00" pubdate data-updated="true">May 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+<li><p>XcodeでFile -> New -> TargetのCocoa Touch Unit Testing Bundleを選択</p></li>
+<li><p>Nextを押す</p></li>
+<li><p>Product Nameを任意のものを入れる</p></li>
+<li><p>Finishを押す</p></li>
+<li><p>ビルドするのをさっき付けたProduct Nameに切り替える</p></li>
+<li><p>cmd + uで実行</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/01/capistrano/">capistranoでchef-soloを実行する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-01T08:26:00+09:00" pubdate data-updated="true">May 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>chefのレシピ作るのを試しやすくするのに作った。</p>
+
+<p>自分のローカルで作ったクックブックをcapistranoでappに指定したサーバーにコピーしてchef-solo実行する。</p>
+
+<figure class='code'><figcaption><span>config/deploy.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">set</span> <span class="ss">:application</span><span class="p">,</span> <span class="s1">&#39;chef-solo&#39;</span>
+</span><span class='line'><span class="n">set</span> <span class="ss">:user</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span>
+</span><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="s1">&#39;192.168.33.10&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:chef</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:install</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s2">&quot;if [[ -d /tmp/chef ]]; then rm -r /tmp/chef; fi&quot;</span>
+</span><span class='line'>    <span class="n">upload</span> <span class="s1">&#39;cookbook&#39;</span><span class="p">,</span> <span class="s1">&#39;/tmp/chef&#39;</span>
+</span><span class='line'>    <span class="n">upload</span> <span class="s1">&#39;chef.rb&#39;</span><span class="p">,</span> <span class="s1">&#39;/tmp/chef/chef.rb&#39;</span>
+</span><span class='line'>    <span class="n">upload</span> <span class="s1">&#39;chef.json&#39;</span><span class="p">,</span> <span class="s1">&#39;/tmp/chef/chef.json&#39;</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s1">&#39;chef-solo -c /tmp/chef/chef.rb -j /tmp/chef/chef.json&#39;</span>
+</span><span class='line'>    <span class="n">run</span> <span class="s1">&#39;rm -r /tmp/chef&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>chef.json </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;run_list&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;recipe[package]&quot;</span> <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>chef.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">file_cache_path</span> <span class="s1">&#39;/tmp/chef-solo&#39;</span>
+</span><span class='line'><span class="n">cookbook_path</span> <span class="s1">&#39;/tmp/chef&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/28/pair-programming/">ペアプログラミングして気づいたこと</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-28T22:01:00+09:00" pubdate data-updated="true">Apr 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近仕事でペアプログラミングを結構やってて、
+今までペアプログラミングをちゃんとやったことがなくて
+ペアプログラミングって何かについて調べたり試行錯誤して
+気づいたことがあったので書いておきます。</p>
+
+<h1>時間を決める</h1>
+
+<p>時間を決めないと集中力が低下したりとか進行がスムーズに進まなかったりする問題がでました。</p>
+
+<p>今はdriverとobserverで30分交代で間に15分休憩でやってます。</p>
+
+<h1>予習</h1>
+
+<p>ペアプロを開始する前、今回やる内容のプログラム全体を立ててdriverと認識を合わせておくと
+observerは指示をしやすくなるし、driverもスムーズに進むようになった。</p>
+
+<h1>外付けモニター</h1>
+
+<p>ノートパソコン使ってると横からdriverの作業してる画面が見にくいので外付けモニターを使ったほうがよかった。</p>
+
+<h1>振り返り</h1>
+
+<p>KPTで良かったこと、問題だったことなどをを振り返って次回改善できることは改善するようにしてたら結構改善できました。</p>
+
+<h1>参考</h1>
+
+<p><a href="http://www.hyuki.com/yukiwiki/wiki.cgi?%A5%DA%A5%A2%A5%D7%A5%ED%A5%B0%A5%E9%A5%DF%A5%F3%A5%B0%A4%CE%A4%E4%A4%EA%A4%AB%A4%BF">ペアプログラミングのやりかた</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/23/post/">忙しいという表現について</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T20:39:00+09:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>よく、忙しいと言ってる人がいると思うんだけど、
+本当に忙しかったら過労死しているので、それは忙しい内に入らないんじゃないかな。</p>
+
+<p>日本だと仕事あり過ぎて死ぬ人もいれば、新卒で内定が決まらないとかで、仕事なくて死ぬ人もいる。
+どっちの人生の方が幸せだったかどうかって怪しいところだな。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/20/shibya-rb/">渋谷.rbに初めて行ってきました</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-20T23:46:00+09:00" pubdate data-updated="true">Mar 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.zusaar.com/event/545003">渋谷.rb</a>に行ってきました。</p>
+
+<p>普段、あんまりrailsとかrubyについて、いろんな人と直接話したりする機会がないので
+大変有意義な時間でした。</p>
+
+<p>railsこれからやっていきたいみたいなすごくやる気に満ちてる人とかいて、
+自分は最近はrailsとかrubyとかをやりはじめた時ほどモチベーションが保ててないので、
+また気を引き締めないとなと思いました。</p>
+
+<p>仕事が詰まってたのでセッション１で帰って仕事してたんですが最後まで参加したかったですね。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/19/post/">最近考えてることについて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-19T00:03:00+09:00" pubdate data-updated="true">Mar 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>人生というのは自分の思ってるよりも短くて、自分も先があまり長くないと思う。</p>
+
+<p>その中の限れた時間でなにが出来るのか、なにをすべきなのか悩ましいことがあって
+その辺がまだ見えない。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/08/post/">「自分が職を失った経緯」について</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-08T01:10:00+09:00" pubdate data-updated="true">Mar 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://d.hatena.ne.jp/anatoo/20130306/1362498483">自分が職を失った経緯</a></p>
+
+<p>こうゆう問題があるとデーター消した人が悪いとか一方的に文句を言う人がいると思うんだけど、
+全部のことに対して消した人が悪いかというとそれは違うんじゃないかなと思って。</p>
+
+<p>万が一間違えた時の対策が出来なかったこの会社の体制も問題があるんじゃないかと。</p>
+
+<p>なににしても、人間である以上絶対間違えないってことは無理なので極力間違えを減らせる仕組みだったり
+間違っても致命的な問題を起きないようにやらないと、人が一人辞めたぐらいじゃなにも変わらないんじゃないのかな。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/07/hhk/">Happy Hacking Keyboard Professional2 Type-Sに乗り換えた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-07T22:18:00+09:00" pubdate data-updated="true">Mar 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/uploads/hhk.jpg" title="" alt="" /></p>
+
+<p>仕事用のキーボードをHHKのType-Sに乗り換えました。</p>
+
+<p>キー押した時の音が静かでいいです。</p>
+
+<p>前まで使ってたのが学生時代から使ってるHappy Hacking Keyboard ProfessionalでUSBハブが付いてなくて不便だったのでそこも良かったです。</p>
+
+<p>前から変えたかったんだけど今年の４月に東京に引っ越して来て３年になるし、会社も引っ越したしちょうど区切りの時期かなと。</p>
+
+<p>これからも変化することに恐れずにいろいろとやっていきたいです。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/10/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/8/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

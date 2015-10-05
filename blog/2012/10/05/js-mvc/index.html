@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>todoアプリ作るのに必要だったコード量の比較 - ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="todoアプリをいろんなjsのmvcフレームワーク使って作ったサンプルが置いてある
+TodoMVCのサンプルのコード量を出してみた。 Ember.js 全部 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 $ find . -type f | xargs wc -l 5 ./css/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/2012/10/05/js-mvc/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">todoアプリ作るのに必要だったコード量の比較</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T09:19:00+09:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>todoアプリをいろんなjsのmvcフレームワーク使って作ったサンプルが置いてある
+<a href="http://addyosmani.github.com/todomvc">TodoMVC</a>のサンプルのコード量を出してみた。</p>
+
+<h2>Ember.js</h2>
+
+<h3>全部</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -type f | xargs wc -l
+</span><span class='line'>     5 ./css/app.css
+</span><span class='line'>    77 ./index.html
+</span><span class='line'>    24 ./js/controllers/todos.js
+</span><span class='line'>    72 ./js/controllers/entries.js
+</span><span class='line'>    15 ./js/app.js
+</span><span class='line'> 20127 ./js/libs/ember-latest.js
+</span><span class='line'>    85 ./js/views/application.js
+</span><span class='line'>    50 ./js/views/todos.js
+</span><span class='line'>    72 ./js/models/store.js
+</span><span class='line'>    16 ./js/models/todo.js
+</span><span class='line'>    53 ./js/router.js
+</span><span class='line'> 20596 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ライブラリを除いた状態</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -path <span class="s1">&#39;./js/libs&#39;</span> -prune -o -type f -a -print | xargs wc -l
+</span><span class='line'>    5 ./css/app.css
+</span><span class='line'>   77 ./index.html
+</span><span class='line'>   24 ./js/controllers/todos.js
+</span><span class='line'>   72 ./js/controllers/entries.js
+</span><span class='line'>   15 ./js/app.js
+</span><span class='line'>   85 ./js/views/application.js
+</span><span class='line'>   50 ./js/views/todos.js
+</span><span class='line'>   72 ./js/models/store.js
+</span><span class='line'>   16 ./js/models/todo.js
+</span><span class='line'>   53 ./js/router.js
+</span><span class='line'>  469 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Angular.js</h2>
+
+<h3>全部</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -type f | xargs wc -l
+</span><span class='line'>   73 ./index.html
+</span><span class='line'>   75 ./js/controllers/todoCtrl.js
+</span><span class='line'>    8 ./js/app.js
+</span><span class='line'>   12 ./js/directives/todoBlur.js
+</span><span class='line'>   16 ./js/directives/todoFocus.js
+</span><span class='line'>  158 ./js/libs/angular/angular.min.js
+</span><span class='line'>   18 ./js/services/todoStorage.js
+</span><span class='line'>  360 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ライブラリを除いた状態</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -path <span class="s1">&#39;./js/libs&#39;</span> -prune -o -type f -a -print | xargs wc -l
+</span><span class='line'>  73 ./index.html
+</span><span class='line'>  75 ./js/controllers/todoCtrl.js
+</span><span class='line'>   8 ./js/app.js
+</span><span class='line'>  12 ./js/directives/todoBlur.js
+</span><span class='line'>  16 ./js/directives/todoFocus.js
+</span><span class='line'>  18 ./js/services/todoStorage.js
+</span><span class='line'> 202 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Backbone.js</h2>
+
+<h3>全部</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -type f | xargs wc -l
+</span><span class='line'>   67 ./index.html
+</span><span class='line'>   38 ./js/lib/backbone-min.js
+</span><span class='line'>   84 ./js/lib/backbone-localstorage.js
+</span><span class='line'>   32 ./js/lib/underscore-min.js
+</span><span class='line'>    9 ./js/app.js
+</span><span class='line'>  132 ./js/views/app.js
+</span><span class='line'>   94 ./js/views/todos.js
+</span><span class='line'>   28 ./js/models/todo.js
+</span><span class='line'>   27 ./js/routers/router.js
+</span><span class='line'>   49 ./js/collections/todos.js
+</span><span class='line'>  560 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ライブラリを除いた状態</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -path <span class="s1">&#39;./js/libs&#39;</span> -prune -o -type f -a -print | xargs wc -l
+</span><span class='line'>   67 ./index.html
+</span><span class='line'>    9 ./js/app.js
+</span><span class='line'>  132 ./js/views/app.js
+</span><span class='line'>   94 ./js/views/todos.js
+</span><span class='line'>   28 ./js/models/todo.js
+</span><span class='line'>   27 ./js/routers/router.js
+</span><span class='line'>   49 ./js/collections/todos.js
+</span><span class='line'>  406 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Spine</h2>
+
+<h3>全部</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -type f | xargs wc -l
+</span><span class='line'>   66 ./index.html
+</span><span class='line'>   40 ./src/controllers/todos.coffee
+</span><span class='line'>   12 ./src/models/todo.coffee
+</span><span class='line'>   88 ./src/app.coffee
+</span><span class='line'>   18 ./Cakefile
+</span><span class='line'>   20 ./readme.md
+</span><span class='line'>   74 ./js/controllers/todos.js
+</span><span class='line'>   30 ./js/lib/local.js
+</span><span class='line'>    7 ./js/lib/route.min.js
+</span><span class='line'>   23 ./js/lib/spine.min.js
+</span><span class='line'>  153 ./js/app.js
+</span><span class='line'>   45 ./js/models/todo.js
+</span><span class='line'>  576 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ライブラリを除いた状態</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="nv">$ </span>find . -path <span class="s1">&#39;./js/lib&#39;</span> -prune -o -type f -a -print | xargs wc -l
+</span><span class='line'>   66 ./index.html
+</span><span class='line'>   40 ./src/controllers/todos.coffee
+</span><span class='line'>   12 ./src/models/todo.coffee
+</span><span class='line'>   88 ./src/app.coffee
+</span><span class='line'>   18 ./Cakefile
+</span><span class='line'>   20 ./readme.md
+</span><span class='line'>   74 ./js/controllers/todos.js
+</span><span class='line'>  153 ./js/app.js
+</span><span class='line'>   45 ./js/models/todo.js
+</span><span class='line'>  516 total
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>結果</h2>
+
+<table>
+<thead>
+<tr>
+<th>framework </th>
+<th> 桁数(ライブラリ除く)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ember.js </td>
+<td> 469</td>
+</tr>
+<tr>
+<td>Angular.js </td>
+<td> 202</td>
+</tr>
+<tr>
+<td>Backbone.js </td>
+<td> 406</td>
+</tr>
+<tr>
+<td>Spine </td>
+<td> 516</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>感想</h2>
+
+<p>Angular.jsだけコード量が他のに比べて圧倒的に少なかった。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">danny</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T09:19:00+09:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  <a href="http://b.hatena.ne.jp/entry/http://f96q.github.com/blog/2012/10/05/js-mvc/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加">
+  <img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://f96q.github.com/blog/2012/10/05/js-mvc/" data-via="" data-counturl="http://f96q.github.com/blog/2012/10/05/js-mvc/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/10/04/post/" title="Previous Post: 逃げろ、そして生き延びろについて">&laquo; 逃げろ、そして生き延びろについて</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/10/06/madoka/" title="Next Post: 劇場版 魔法少女まどかマギカ 前編 始まりの物語を観に行って来ました">劇場版 魔法少女まどかマギカ 前編 始まりの物語を観に行って来ました &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

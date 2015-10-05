@@ -1,0 +1,839 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="今までサブ機でAir持ってたんだけど、AirだとCPUの力が足りないなと思うことが多くて、Proだと性能的にはいいんだけど13インチだと2kgぐらいあるので
+持ち歩くにはちょっと重いなと思ってて。 Proのドライブがないのが欲しいなと思ってたら出たので。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/page/15/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/27/macbook/">MacBook Pro Retina 13inchを買いました</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-27T23:39:00+09:00" pubdate data-updated="true">Oct 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/uploads/macbook.jpg" title="" alt="" /></p>
+
+<p>今までサブ機でAir持ってたんだけど、AirだとCPUの力が足りないなと思うことが多くて、Proだと性能的にはいいんだけど13インチだと2kgぐらいあるので
+持ち歩くにはちょっと重いなと思ってて。</p>
+
+<p>Proのドライブがないのが欲しいなと思ってたら出たので。</p>
+
+<p>でもここ数年買ってみたものの実際使ってみると不満点が出て、だいたい一年単位でマシンを買い換えてるので最後までどうするか悩んでたんだけど、Apple Storeで現物を触ってみたらモニターの字が凄く、くっきりしてて見やすくて、いままで使ってたモニターはなんだったのかっていうぐらいの衝撃はありました。</p>
+
+<p>それで買うことに決めました。</p>
+
+<p>これぐらいモニターが見やすいと持ち歩いて、カフェとかで使いたくなりますね。</p>
+
+<p>13インチのAirに比べて重いんだけど、全体の面積が小さくなってて良いなと思いました。</p>
+
+<p>液晶の保護シートがまだ対応するのが発売されてないみたいで、RetinaじゃないMacBook Proの13用のをはみ出した部分を切って取り合えす貼りました。</p>
+
+<p>トラックパットの保護シートは形が同じなのか問題なく貼れました。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/26/deep-transform-keys/">deep_transform_keys!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-26T08:33:00+09:00" pubdate data-updated="true">Oct 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hash#deep_transform_keys!だとHashのkeyの値がArrayでそのArrayにHashが入ってる場合のケースにHashのkeyが変換できなかったので結局自分で実装した。</p>
+
+<p>再帰は面白いですね。</p>
+
+<h1>実装</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">deep_transform_keys!</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">case</span> <span class="n">value</span>
+</span><span class='line'>  <span class="k">when</span> <span class="no">Hash</span>
+</span><span class='line'>    <span class="n">value</span><span class="o">.</span><span class="n">keys</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="o">|</span> <span class="n">value</span><span class="o">[</span><span class="k">yield</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">]</span> <span class="o">=</span> <span class="n">deep_transform_keys!</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="n">value</span>
+</span><span class='line'>  <span class="k">when</span> <span class="nb">Array</span>
+</span><span class='line'>    <span class="n">value</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">deep_transform_keys!</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">value</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>実行例</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">value</span> <span class="o">=</span> <span class="p">{</span><span class="n">person</span><span class="p">:</span> <span class="p">{</span> <span class="n">first_name</span><span class="p">:</span> <span class="s1">&#39;Rob&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="p">:</span> <span class="s1">&#39;Bob&#39;</span><span class="p">}}</span>
+</span><span class='line'><span class="n">deep_transform_keys!</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="o">|</span> <span class="n">key</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">camelize</span><span class="p">(</span><span class="ss">:lower</span><span class="p">)</span><span class="o">.</span><span class="n">to_sym</span><span class="p">}</span>
+</span><span class='line'><span class="c1"># =&gt; {person: { firstName: &#39;Rob&#39;, lastName: &#39;Bob&#39;}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">value</span> <span class="o">=</span> <span class="p">{</span><span class="n">person</span><span class="p">:</span> <span class="p">{</span> <span class="n">firstName</span><span class="p">:</span> <span class="s1">&#39;Rob&#39;</span><span class="p">,</span> <span class="n">lastName</span><span class="p">:</span> <span class="s1">&#39;Bob&#39;</span><span class="p">}}</span>
+</span><span class='line'><span class="n">deep_transform_keys!</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">key</span><span class="o">|</span> <span class="n">key</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">underscore</span><span class="o">.</span><span class="n">to_sym</span><span class="p">}</span>
+</span><span class='line'><span class="c1"># =&gt; {person: { first_name: &#39;Rob&#39;, last_name: &#39;Bob&#39;}}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/25/deep-transform-keys/">Hash#deep_transform_keys</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-25T08:49:00+09:00" pubdate data-updated="true">Oct 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hash中身のkeyを加工して結果を返したくてActiveSupportのソースコード読んでたらHash#deep_transform_keysっていうのがあって、以下のようなことができるんだけど</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="n">person</span><span class="p">:</span> <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Rob&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="s1">&#39;28&#39;</span> <span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>  <span class="nb">hash</span><span class="o">.</span><span class="n">deep_transform_keys</span><span class="p">{</span> <span class="o">|</span><span class="n">key</span><span class="o">|</span> <span class="n">key</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
+</span><span class='line'>  <span class="c1"># =&gt; { &quot;PERSON&quot; =&gt; { &quot;NAME&quot; =&gt; &quot;Rob&quot;, &quot;AGE&quot; =&gt; &quot;28&quot; } }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今開発で使ってるRails 3.2.8だとundefined methodになって調べたら、Rails 4.0の<a href="http://edgeguides.rubyonrails.org/4_0_release_notes.html">リリースノート</a>に書いてあった。</p>
+
+<blockquote><p>Add Hash#transform_keys, Hash#transform_keys!, Hash#deep_transform_keys and Hash#deep_transform_keys!.</p></blockquote>
+
+<p>Rails4.0から追加されるらしい。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/24/capybara/">capybaraでスクリーンショット取ったりとか</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-24T13:46:00+09:00" pubdate data-updated="true">Oct 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近はvmにLinuxを入れて、それにsshして開発してるのでsave_and_open_pageが使えなくてほかにデバッグする方法がないか調べてみた。</p>
+
+<h1>htmlファイルとして保存</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">save_page</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>save_pageは使えた。プロジェクトルートの/tmp/capybaraに保存される。</p>
+
+<h1>画像ファイルでスクリーンショットを撮る</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">page</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">render</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;screenshot.jpg&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この場合だとプロジェクトルートにscreenshot.jpgで保存される。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/23/coffeescript/">Coffee Scriptのコールバック関数の話</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-23T08:03:00+09:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">func = </span><span class="nf">(flag = false) -&gt;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">flag</span>
+</span><span class='line'>    <span class="nx">alert</span> <span class="s">&#39;true&#39;</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nx">alert</span> <span class="s">&#39;false&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上のような関数を定義した時</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">).</span><span class="nx">click</span> <span class="nx">func</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ってやると引数がflag = falseでfalseが入ってalert &#8216;false&#8217;が実行されるようにみえるんだけど
+clickのcallbackする関数の第一引数がJQuery.Eventなので結果としてfuncの第一引数にJQuery.Eventのオブジェクトが渡されてalert &#8216;true&#8217;の方が実行されてしまう。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">).</span><span class="nx">click</span> <span class="o">-&gt;</span> <span class="nx">func</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なのでこの書き方が安全だと思う。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/18/post/">markdown形式をhtmlに変換するのになに使うのがいいんだろうか</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-18T14:08:00+09:00" pubdate data-updated="true">Oct 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://www.ruby-toolbox.com/categories/markup_processors.html">ここ</a>を見て<a href="https://github.com/jameswilding/markup">markup</a>を試してみた。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo gem install markup
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>markup 2012-10-17-image.markdown
+</span><span class='line'>  Created 2012-10-17-image.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでHTMLに変換できた。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/17/image/">複数のばらばらのサイズの画像ファイルを切り抜きして指定したサイズに統一する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-17T12:25:00+09:00" pubdate data-updated="true">Oct 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>サンプルデーターとかの画像のサイズがばらばらだった場合用に作った。</p>
+
+<p>cropする時はcropする前の画像の中心からcropするようにした。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;fileutils&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">width</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">height</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">resize_width</span><span class="p">:</span> <span class="mi">930</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">resize_height</span><span class="p">:</span> <span class="mi">930</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">dir</span><span class="p">:</span> <span class="s1">&#39;./output&#39;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">input</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">dir</span><span class="p">:</span> <span class="s1">&#39;./input&#39;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">FileUtils</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">output</span><span class="o">[</span><span class="ss">:dir</span><span class="o">]</span><span class="p">)</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="p">(</span><span class="n">output</span><span class="o">[</span><span class="ss">:dir</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">files</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">input</span><span class="o">[</span><span class="ss">:dir</span><span class="o">]</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">path</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">files</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">input</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="o">[</span><span class="ss">:dir</span><span class="o">]</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">File</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;.*&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.jpg&quot;</span><span class="p">)}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">files</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="sb">`identify -format &quot;%wx%h&quot; </span><span class="si">#{</span><span class="n">file</span><span class="o">[</span><span class="ss">:input</span><span class="o">]</span><span class="si">}</span><span class="sb">`</span><span class="o">.</span><span class="n">strip</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="o">.</span><span class="n">to_i</span><span class="p">}</span>
+</span><span class='line'>  <span class="n">image</span> <span class="o">=</span> <span class="p">{</span><span class="n">width</span><span class="p">:</span> <span class="n">data</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">data</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">image</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">output</span><span class="o">[</span><span class="ss">:resize_width</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">width</span> <span class="o">=</span> <span class="n">output</span><span class="o">[</span><span class="ss">:resize_width</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span> <span class="o">*</span> <span class="n">output</span><span class="o">[</span><span class="ss">:resize_width</span><span class="o">]</span> <span class="o">/</span> <span class="n">image</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">width</span> <span class="o">=</span> <span class="n">image</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">*</span> <span class="n">output</span><span class="o">[</span><span class="ss">:resize_height</span><span class="o">]</span> <span class="o">/</span> <span class="n">image</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">height</span> <span class="o">=</span> <span class="n">output</span><span class="o">[</span><span class="ss">:resize_height</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;convert -resize </span><span class="si">#{</span><span class="n">width</span><span class="si">}</span><span class="s2">x</span><span class="si">#{</span><span class="n">height</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">file</span><span class="o">[</span><span class="ss">:input</span><span class="o">]</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">file</span><span class="o">[</span><span class="ss">:output</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">cmd</span>
+</span><span class='line'>  <span class="nb">system</span> <span class="n">cmd</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="sb">`identify -format &quot;%wx%h&quot; </span><span class="si">#{</span><span class="n">file</span><span class="o">[</span><span class="ss">:output</span><span class="o">]</span><span class="si">}</span><span class="sb">`</span><span class="o">.</span><span class="n">strip</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="o">.</span><span class="n">to_i</span><span class="p">}</span>
+</span><span class='line'>  <span class="n">image</span> <span class="o">=</span> <span class="p">{</span><span class="n">width</span><span class="p">:</span> <span class="n">data</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">data</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span> <span class="n">image</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">output</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">||</span> <span class="n">image</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">output</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="s2">&quot;image size = </span><span class="si">#{</span><span class="n">image</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span><span class="si">}</span><span class="s2"> x </span><span class="si">#{</span><span class="n">image</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">x</span> <span class="o">=</span> <span class="n">image</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">/</span> <span class="mi">2</span>  <span class="o">-</span> <span class="n">output</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="n">y</span> <span class="o">=</span> <span class="n">image</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">output</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;convert -crop </span><span class="si">#{</span><span class="n">output</span><span class="o">[</span><span class="ss">:width</span><span class="o">]</span><span class="si">}</span><span class="s2">x</span><span class="si">#{</span><span class="n">output</span><span class="o">[</span><span class="ss">:height</span><span class="o">]</span><span class="si">}</span><span class="s2">+</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">+</span><span class="si">#{</span><span class="n">y</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">file</span><span class="o">[</span><span class="ss">:output</span><span class="o">]</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">file</span><span class="o">[</span><span class="ss">:output</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">cmd</span>
+</span><span class='line'>  <span class="nb">system</span> <span class="n">cmd</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/16/post/">画像の右側が外注さんに頼んだソースコード。左側が僕が書きなおしたソースコード。&#8230;について</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-16T08:34:00+09:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://ac7.tumblr.com/post/33569124174">画像の右側が外注さんに頼んだソースコード。左側が僕が書きなおしたソースコード。&#8230;</a></p>
+
+<blockquote><p>ネット上に配布されてるようなソースコードに手を入れてお金をとる人がいるから、フリーランスの開発者はうさんくさいと思われちゃったりする。</p></blockquote>
+
+<p>この程度で仕事になってフリーランスでやっていけるのが問題あると思うんだけど、
+上がってきたものが問題あって自分で直してしまうと最初から頼まなければよかったって話になるし。</p>
+
+<blockquote><p>開発の仕事を受ける以上は、業界の評価を下げるような仕事をしてほしくない。
+つうか、仕事に対して真摯でない人は同業者に迷惑かけるから勘弁してほしい。</p></blockquote>
+
+<p>これはそうですね。</p>
+
+<p>自分はできるほうじゃないですが、結局ほかのできる開発者の足を引っ張ることになる。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/14/madoka2/">劇場版 魔法少女まどかマギカ 後編 永遠の物語を観に行って来ました</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-14T22:21:00+09:00" pubdate data-updated="true">Oct 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/uploads/madoka2.jpg" title="" alt="" /></p>
+
+<p>２日目に行って来ました。</p>
+
+<p>初日じゃなかったけどフィルムも朝の一番最初の回に行ったら交換できました。</p>
+
+<p>さやかだった。</p>
+
+<h1>フィルム</h1>
+
+<p><img src="/images/uploads/film.jpg" title="" alt="" /></p>
+
+<h1>感想</h1>
+
+<p>映画の中も流れましたが、全部通してみるとコネクトが歌詞がすごくほむらのことが書かれてしっくりきますよね。</p>
+
+<p>来年に新作の映画をやるみたいで楽しみです。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/11/xls/">xlsのデータを読み取ったりとか</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-11T23:38:00+09:00" pubdate data-updated="true">Oct 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>よくマスターデーターとかエクセルで送られて来たのを使わないといけないことがあったりして、
+正直その手のデーターをエクセルで管理する文化がなくなって欲しいんだけど、世の中的にそれが標準らしい。</p>
+
+<p>セル管理だと分かりにくいのとマイクロソフトの独自フォーマットだからよくないよね。</p>
+
+<p>仕様は公開されてるみたいだけど。</p>
+
+<p>それで毎回、インポートするプログラムを書くわけで<a href="http://rubygems.org/gems/spreadsheet">spreadsheet</a>っていうgemが使いやすかった。</p>
+
+<h1>シートを取得</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;spreadsheet&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">book</span> <span class="o">=</span> <span class="no">Spreadsheet</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;input.xls&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">sheet</span> <span class="o">=</span> <span class="n">book</span><span class="o">.</span><span class="n">worksheet</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>n行を取得</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">sheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">v</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>n列を取得</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">sheet</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">v</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>特定のセルを取得</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">sheet</span><span class="o">[</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/16/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/14/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

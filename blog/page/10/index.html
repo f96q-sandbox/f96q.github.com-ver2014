@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content=" 1
+2
+3
+&lt;ul&gt; &lt;li data-ng-repeat=&quot;item in items&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt; $indexで取得できた。
+">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/page/10/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/06/angular-ng-repeat/">angular.jsでng-repeatした時にインデックスを取得</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-06T00:59:00+09:00" pubdate data-updated="true">Mar 6<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li</span> <span class="na">data-ng-repeat=</span><span class="s">&quot;item in items&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$indexで取得できた。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/05/rails4-jbuilder/">rails4のjbuilderを使ってみた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-05T23:44:00+09:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>rails4の新機能のjbuilderを使ってみました。</p>
+
+<h1>なにがいいの</h1>
+
+<p>今までだとjsonを返すのにas_jsonをオーバーライドしたりしてto_jsonで返したりとかすることがあって、
+特定のルーティングの時はjsonのこの項目だけ返さないようにしたいとか返す値を変えたいとかがやりずらくて、
+その辺のをviewの別ファイルとして分けれるのがいいんじゃないかと思いました。</p>
+
+<h1>routes</h1>
+
+<figure class='code'><figcaption><span>config/routes.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">resouce</span> <span class="ss">:items</span><span class="p">,</span> <span class="ss">:only</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:index</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>controller</h1>
+
+<figure class='code'><figcaption><span>app/controllers/items_controller.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>  <span class="vi">@items</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>view</h1>
+
+<figure class='code'><figcaption><span>/app/views/items/index.json.jbuilder </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">json</span><span class="o">.</span><span class="n">key_format!</span> <span class="ss">:camelize</span> <span class="o">=&gt;</span> <span class="ss">:lower</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">json</span><span class="o">.</span><span class="n">array!</span><span class="p">(</span><span class="vi">@items</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">json</span><span class="o">.</span><span class="n">price</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span>
+</span><span class='line'>  <span class="n">json</span><span class="o">.</span><span class="n">name</span>  <span class="n">item</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>  <span class="n">json</span><span class="o">.</span><span class="n">size</span>  <span class="n">item</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>最後に</h1>
+
+<p>jbuilderいいんだけど、名前で検索するとjavaのIDEばっかり出てくるから名前がよくないんじゃないかと思ったりもしなくないな。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/04/git-new-workdir/">git-new-workdirが便利だった</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-04T00:50:00+09:00" pubdate data-updated="true">Mar 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>git-new-workdirを使ってみたらすごく便利だった、ワーキングディレクトリを複数作れる。</p>
+
+<h1>使い方</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git-new-workdir &lt;repository&gt; &lt;new_workdir&gt; <span class="o">[</span>&lt;branch&gt;<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>例えばblogって名前のシステムを複数人で機能ごとにブランチ切ってやっててレビューしながら開発してる時に</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git-new-workdir blog blog-review
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とかやれば、blog-reviewってディレクトリがblogとは別なワーキングディレクトリになる。</p>
+
+<p>自分が開発しているときに途中で別ブランチのレビューをする場合に今まで</p>
+
+<ol>
+<li>自分の開発用ブランチでstatsh</li>
+<li>レビュー用のブランチに切り替え</li>
+<li>レビュー終わり</li>
+<li>自分の開発用ブランチに戻る</li>
+<li>statsh pop</li>
+</ol>
+
+
+<p>とかしてたのをblogとblog-reviewというディレクトリの切り替えで済むようになった。</p>
+
+<p>他にもデザイン用のブランチがorphanブランチでデザイン当てにhtmlを見ないといけない時とかに、
+デザイン用ブランチをワーキングディレクトリとして別に作っておけばいちいちブランチを切り替えなくても作業出来るのでいいと思う。</p>
+
+<h1>参考</h1>
+
+<p><a href="http://subtech.g.hatena.ne.jp/secondlife/20121207/1354854068">git-new-workdir が便利</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/03/ui-screen/">Xcode SDKでiPhoneの画面サイズの取得方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-03T00:19:00+09:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>iPhone5が出る前のiPhoneアプリをiPhoneの4inichの画面サイズに対応させるのに調べてたら高さが固定になってる箇所があって、
+今回3.5inchと両方対応できるように取得して計算するように直したので各高さの取得方法を調べた。</p>
+
+<h1>全体の高さ</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[[</span><span class="n">UIScreen</span> <span class="n">mainScreen</span><span class="p">]</span> <span class="n">bounds</span><span class="p">].</span><span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>ステータスバーの高さ</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[[</span><span class="n">UIApplication</span> <span class="n">sharedApplication</span><span class="p">]</span> <span class="n">statusBarFrame</span><span class="p">].</span><span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>ナビゲーションコントローラーのナビゲーションバーの高さ</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">navigationController</span><span class="p">.</span><span class="n">navigationBar</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/25/post/">Rubyist Magazine 0041 号に載りました</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-25T03:12:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://jp.rubyist.net/magazine/?0041-TokyoRubyKaigi10Report_1st">東京Ruby会議10のレポート</a>で、こないだ発表したことについて書いてもらったようです。</p>
+
+<p>まだ学生だった当時、るびまの１号とか２号とかだった頃から読んでたのでそれに自分が載ること事態がびっくりしました。</p>
+
+<p>どうもありがとうございました。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/24/post/">激しい曲について</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-24T16:13:00+09:00" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>人によって感性が違うと思うので個人的に激しい曲だなと思ったのを紹介します。</p>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/537HUcj7CLQ" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/q6b91YRvx0U" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/vY_7NKEDO9o" frameborder="0" allowfullscreen></iframe>
+
+
+<h1>おまけ</h1>
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/wvsboPUjrGc" frameborder="0" allowfullscreen></iframe>
+
+
+<p>これは、この<a href="http://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%86%E3%82%A3%E3%83%BC%E3%83%96%E3%83%BB%E3%83%90%E3%83%AB%E3%83%9E%E3%83%BC">おっさん</a>が激しいだけかもしれない。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/16/iphone-icon/">iOS用の必要なアイコンを作るスクリプト</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-16T23:07:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>スクリプト</h1>
+
+<figure class='code'><figcaption><span>icon.sh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
+</span><span class='line'>
+</span><span class='line'>convert -resize 57x57 <span class="nv">$1</span> Icon.png
+</span><span class='line'>convert -resize 114x114 <span class="nv">$1</span> Icon@2x.png
+</span><span class='line'>
+</span><span class='line'>convert -resize 72x72 <span class="nv">$1</span> Icon-72.png
+</span><span class='line'>convert -resize 144x144 <span class="nv">$1</span> Icon-72@2x.png
+</span><span class='line'>
+</span><span class='line'>convert -resize 29x29 <span class="nv">$1</span> Icon-Small.png
+</span><span class='line'>convert -resize 58x58 <span class="nv">$1</span> Icon-Small@2x.png
+</span><span class='line'>
+</span><span class='line'>convert -resize 50x50 <span class="nv">$1</span> Icon-Small-50.png
+</span><span class='line'>convert -resize 100x100 <span class="nv">$1</span> Icon-Small-50@2x.png
+</span><span class='line'>
+</span><span class='line'>convert -resize 512x512 <span class="nv">$1</span> -format png iTunesArtwork
+</span><span class='line'>convert -resize 1024x1024 <span class="nv">$1</span> -format png iTunesArtwork@2x
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>実行例</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sh icon.sh ../data/icon.png
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/09/post/">IDケース買った</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-09T23:22:00+09:00" pubdate data-updated="true">Feb 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="/images/uploads/card-case.jpg" title="" alt="" /></p>
+
+<p>今年に入ってから人前で話したり、技術系のイベントに行ったりする機会が増えたのでそろそろちゃんとした物にするかと思って。</p>
+
+<p><a href="http://www.mansaw.net/shop/goods/goods/goods.php?act=Goods&amp;mode=Detail&amp;id=00000119">これ</a>です。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/05/orphan-branch/">Gitのorphanブランチについて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-05T00:33:00+09:00" pubdate data-updated="true">Feb 5<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>試しにtestという名前のブランチで作成してみた。</p>
+
+<h1>masterブランチで</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>cp  .gitignore dot.gitignore
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>.gitignoreをコピーするのに別名でコピーした。</p>
+
+<h1>testブランチで</h1>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git checkout --orphan <span class="nb">test</span>
+</span><span class='line'>git rm -rf .
+</span><span class='line'>mv dot.gitignore .gitignore
+</span><span class='line'>git add .gitignore
+</span><span class='line'>git commit -m <span class="s1">&#39;test&#39;</span>
+</span><span class='line'>git push origin <span class="nb">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>結果</h1>
+
+<p><img src="/images/uploads/git-orphan-branch.jpg" title="" alt="" /></p>
+
+<p>根っこがつながってない。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/04/post/">まだ現実よりもネットの方が劣ってると思うこと</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-04T00:33:00+09:00" pubdate data-updated="true">Feb 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>文章から相手の感情を知ることが出来ない点</h1>
+
+<p>文章から相手が冗談なのか怒ってるのかその辺を見極めるのが難しいかなと、
+その辺の所はネットよりは直接、面と向かって話したほうがまだいいかもしれないです。</p>
+
+<p>ただ感情出さない人もいるのでそれが確実にいいかというと難しい。</p>
+
+<p>特にオチはないです。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/11/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/9/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

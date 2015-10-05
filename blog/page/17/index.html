@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ガイアが俺にもっとコード書けと囁いている</title>
+  <meta name="author" content="danny">
+
+  
+  <meta name="description" content="今までなんかのインストールして設定するchefのレシピを
+書くときに途中でレシピを間違った時にインストールしてない状態にしてやり直すのに
+毎回vagrant destroyしてvmを作り直してやってて時間がかかって大変だったんだけど、
+sandboxを使える方法があるということが分かった。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://f96q.github.com/blog/page/17/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ガイアが俺にもっとコード書けと囁いている" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ガイアが俺にもっとコード書けと囁いている</a></h1>
+  
+    <h2>コード意外のことも書くよ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:f96q.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/23/vagrant/">vagrant sandboxが便利な件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-23T08:46:00+09:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今までなんかのインストールして設定するchefのレシピを
+書くときに途中でレシピを間違った時にインストールしてない状態にしてやり直すのに
+毎回vagrant destroyしてvmを作り直してやってて時間がかかって大変だったんだけど、
+sandboxを使える方法があるということが分かった。</p>
+
+<h2>gemを追加</h2>
+
+<figure class='code'><figcaption><span>Gemfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;sahara&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>vagrantを起動する</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant up
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> VM already created. Booting <span class="k">if </span>it<span class="err">&#39;</span>s not already running...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Clearing any previously <span class="nb">set </span>forwarded ports...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Forwarding ports...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> -- <span class="nv">22</span> <span class="o">=</span>&gt; 2222 <span class="o">(</span>adapter 1<span class="o">)</span>
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Creating shared folders metadata...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Clearing any previously <span class="nb">set </span>network interfaces...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Preparing network interfaces based on configuration...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Running any VM customizations...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Booting VM...
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> Waiting <span class="k">for </span>VM to boot. This can take a few minutes.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>sandboxを有効にする</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant sandbox on
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - Enabling sandbox
+</span><span class='line'>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここでなんかインストールしたりする</p>
+
+<h2>巻き戻す</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant sandbox rollback
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - powering off machine
+</span><span class='line'>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - roll back machine
+</span><span class='line'>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - starting the machine again
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>インストールする前の状態に戻ってる</p>
+
+<h2>sandboxを無効にする</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant sandbox off
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - switching sandbox off
+</span><span class='line'>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>sandboxをでやったことを反映する</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant sandbox commit
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - unwinding sandbox
+</span><span class='line'>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+</span><span class='line'><span class="o">[</span>default<span class="o">]</span> - fastforwarding sandbox
+</span><span class='line'>00%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/22/post/">変人のはなしについて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-22T21:59:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://anond.hatelabo.jp/20120921020506">変人のはなし。</a></p>
+
+<blockquote><p>アスペルガー症候群と診断された。知的障害のない自閉症。高機能自閉症ともいうらしい。
+どういうことか簡潔にいうと、自分の感情をうまく表現できないし、他人の感情もうまく理解できない。</p></blockquote>
+
+<p>自分も感情を表現したり、他人の感情を理解したりするのができなくて今まで生きてきて嫌なこともいっぱいあったし
+誰も人と関わらないで一生を過ごしたくなったりもしたんだけど、それはそれで自分にとって窮屈すぎてできなかった。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/21/post/">コミュ障の俺がコミュニケーション能力について語ってみた</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-21T08:02:00+09:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://eduon.jp/news/other/20120913-002799.html">就職活動に必要なスキル、1位コミュニケーション</a></p>
+
+<blockquote><p>大学生が考える就職活動で重要だと思うスキル・要素は、就職活動開始前では、1位コミュニケーション能力、2位協調性、3位一般常識、4位チャレンジ精神、5位主体性だった。就職活動開始後では、1位コミュニケーション能力、2位主体性、3位協調性、4位チャレンジ精神、5位一般常識だった。</p></blockquote>
+
+<p>コミュニケーション能力って結局よく分からないんだけど、
+自分から他人を見た場合にコミュニケーションを取るにあたって難易度があって、下にいくにつれて難易度が下がると思うんだけど</p>
+
+<ul>
+<li><p>自分も相手お互いのこと知らない</p></li>
+<li><p>自分は相手のことが知らないけど相手は自分のことを知ってる</p></li>
+<li><p>自分は相手のことが知ってるけど相手は自分のことを知らない</p></li>
+<li><p>自分も相手もお互いのこと知ってる</p></li>
+<li><p>自分も相手もお互いのこと知ってて共通の話題がある</p></li>
+</ul>
+
+
+<p>具体的にコミュニケーション能力についての共通の見解みたいのがないよね。</p>
+
+<p>RFCとかで定義されてるといいのか。</p>
+
+<p>個人的に舌先三寸で生きてる人はあんまり信用できないんだけど。</p>
+
+<p>なんでもそうなんだけど、本音で向きあって欲しい。</p>
+
+<p>みんな、コミュニケーション能力ってなんのことか理解してるのかと疑問に思ったとかそんな話でした。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/19/jenkins-rubymetrics/">chef-jenkinsでrubyMetricsをインストールする</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-19T07:48:00+09:00" pubdate data-updated="true">Sep 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/fnichol/chef-jenkins">chef-jenkins</a>でレシピを作っていて
+SimpleCovを使うのにjenkinsプラグインのrubyMetricsを自動インストールされるようにしたんだけど、
+rubyMetricsだけ指定しても起動すると反映されていなくて依存してるプラグインは自動でインストールされないらしい。</p>
+
+<p>依存しているプラグインのmaven-pluginとrakeも入れるようにしたら動くようになった。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="ss">:jenkins</span><span class="o">][</span><span class="ss">:server</span><span class="o">][</span><span class="ss">:plugins</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;maven-plugin&quot;</span><span class="p">,</span> <span class="s2">&quot;rake&quot;</span><span class="p">,</span> <span class="s2">&quot;rubyMetrics&quot;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/17/ember-generator/">ember-railsでジェネレーターを使って生成する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-17T21:02:00+09:00" pubdate data-updated="true">Sep 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ember-railsで新しいviewとかmodelとかcontrollerを追加する時に手作業でいちいちファイル作るのが不便なので、railsみたいジェネレーターで生成できるかを調べてみた。</p>
+
+<h2>model</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rails g ember:model test_controller
+</span><span class='line'>    create  app/assets/javascripts/models/test.js
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>view</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rails g ember:view <span class="nb">test</span>
+</span><span class='line'><span class="nb">    </span>create  app/assets/javascripts/views/test_view.js
+</span><span class='line'>    create  app/assets/javascripts/templates/test.handlebars
+</span><span class='line'>    create  app/assets/javascripts/controllers/test_controller.js
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>viewの時だけcontrollerもいっしょに生成された。</p>
+
+<h2>controller</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rails g ember:controller <span class="nb">test</span>
+</span><span class='line'><span class="nb">    </span>create  app/assets/javascripts/controllers/test_controller.js
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ember.ArrayControllerベースのcontrollerを生成する場合</h3>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rails g ember:controller <span class="nb">test</span> --array
+</span><span class='line'>    create  app/assets/javascripts/controllers/test_controller.js
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/15/chef/">Chefでデバックのログを出す方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T11:50:00+09:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Chef</span><span class="o">::</span><span class="no">Log</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s1">&#39;message&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでChef動かした時にコンソールに出力された。</p>
+
+<p>レシピ中だとChefという名前空間は省略しても動いた。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/14/post/">世界が輸入禁止にしている食品</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-14T07:07:00+09:00" pubdate data-updated="true">Sep 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://kingo999.blog.fc2.com/blog-entry-854.html">世界が輸入禁止にしている食品</a></p>
+
+<p>この手の情報がもっと表立って公開されないことに、この国は大丈夫なのかって危機感があるような気がするんだけど。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/13/post/">近ごろの若いヤツはというが、本当にダメのかについて</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-13T07:31:00+09:00" pubdate data-updated="true">Sep 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://bizmakoto.jp/makoto/articles/1209/12/news015.html">近ごろの若いヤツはというが、本当にダメのか</a></p>
+
+<p>何時の時代も若者はdisられる運命なんじゃないですかね。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/12/post/">いまだに知らないなんてありえない病について</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-12T08:22:00+09:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://blog.livedoor.jp/lalha/archives/50460223.html">いまだに知らないなんてありえない病</a></p>
+
+<p>これよく分かるんだけど、これを知らないといけないみたいのはきりがないですよね。</p>
+
+<p>必要か必要じゃないかは自分で判断して必要だったら学習すればいいけど、
+一人の人間が一生で使える時間は限りがあるので、切り捨てる覚悟も必要なんじゃないかと思いました。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/10/ember-rails/">RailsでEmber.jsを使えるようにするまで</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-10T08:33:00+09:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>railsのプロジェクト作成</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rails new demo</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>gemの追加</h2>
+
+<p>Uncaught Error: assertion failed: Ember Views require jQuery 1.7</p>
+
+<p>というエラーが動かした時に出たのでjquery-railsのバージョンを固定。</p>
+
+<figure class='code'><figcaption><span>Gemfile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.3&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;ember-rails&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle install --path .bundle</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>emberで使う階層構造とファイルなどの自動生成</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle exec rails g ember:bootstrap</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>設定を追加</h2>
+
+<figure class='code'><figcaption><span>config/environments/development.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="no">Demo</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ember</span><span class="o">.</span><span class="n">variant</span> <span class="o">=</span> <span class="ss">:development</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rails g controller home</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>config/routes.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="no">Demo</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">root</span> <span class="ss">:to</span> <span class="o">=&gt;</span> <span class="s1">&#39;home#index&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>動かしてChromeのJavaScriptコンソールでエラーが出てないのを確認。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/18/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/16/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/12/coreos/">CoreOSに移行した</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/11/post/">最近気になってるgem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/04/docker-port-forward/">dockerでポートフォワードを複数指定する方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/31/pgcafe/">5月のプログラマーズカフェでLTしてきました</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/16/post/">フルスタックエンジニア募集についていろいろ書かれてる件について一言書いておくか</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - danny -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
